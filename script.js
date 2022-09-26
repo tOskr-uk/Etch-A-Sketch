@@ -1,8 +1,16 @@
 'use strict';
 
 const grid = document.querySelector('.grid');
+const colorPicker = document.querySelector('.color-picker input');
+let PenColor = '#000';
 
-createGrid(64);
+createGrid(16);
+
+
+colorPicker.addEventListener('change', ()=>{
+    PenColor = colorPicker.value;
+    colorPicker.nextElementSibling.style.backgroundColor = PenColor;
+})
 
 grid.addEventListener('mousedown',e=>{
     paintCell(e.target);
@@ -32,3 +40,12 @@ function createGrid(size){
         grid.appendChild(div);
     }
 }
+
+function clearCanvas(){
+    const cells = document.querySelectorAll('.grid__cell');
+    cells.forEach(cell => {
+        cell.style.backgroundColor = 'white';
+    });
+}
+
+

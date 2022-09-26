@@ -8,9 +8,18 @@
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <section class="grid">
-        
+    <section class="scetch">
+        <div class="tools">
+            <div class="color-picker">
+                <input id="color" type="color">
+                <label for="color"></label>
+            </div>
+            <div class="switch">
+                <button class="btn" onclick="clearCanvas()">Clear Canvas</button>
+            </div>
+        </div>  
+        <div class="grid"></div>
     </section>
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-:root{
-    --grid-width: 600px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
 *,
 *::before,
@@ -16,19 +14,65 @@ html{
 
 body{
     font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
 }
 
+/* SCETCH */
+.scetch{
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 5rem 5rem 0 5rem;
+    gap: 5rem;
+}
+/* GRID */
 .grid{
+    --grid-width: 500px;
     display: flex;
     flex-flow: row wrap;
-
-    /* border: 5px solid green; */
+    height: var(--grid-width);
     width: var(--grid-width);
-    height: 600px;
+    outline: 1px solid #444;
+    background-color: #fff;
+    box-shadow: 0 0 8px -2px rgba(0,0,0,0.8);
+    border-radius: 10px;
 }
 
 .grid__cell{
-    /* border: 1px solid orange; */
     height: calc(var(--grid-width)/16);
     width: calc(var(--grid-width)/16);
+}
+
+
+/* TOOLS SECTION */
+.tools{
+    width: 100px;
+    height: 500px;
+    /* border: 1px solid #444; */
+}
+
+.color-picker input{
+    display: none;
+}
+
+.color-picker label{
+    display: block;
+    border-radius: 50%;
+    height: 100px;  
+    width: 100px;
+    background-color: aquamarine;
+}
+
+
+/* COMPONENTS */
+.btn{
+    width: 100%;
+    height: 4rem;
+    background-color: white;
+    border: 1px solid #444;
+    font-family: inherit;
+    letter-spacing: .2rem;
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.5);
+    
 }
