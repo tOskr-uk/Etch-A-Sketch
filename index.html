@@ -15,7 +15,10 @@
                 <label for="color"></label>
             </div>
             <div class="switch">
+                <input id="size" type="range" min="8" max="64" value="16">
                 <button class="btn" onclick="clearCanvas()">Clear Canvas</button>
+                <input id="grid-check" type="checkbox">
+                <label id="grid-label" class="btn" for="grid-check">Toggle Grid</label>
             </div>
         </div>  
         <div class="grid"></div>

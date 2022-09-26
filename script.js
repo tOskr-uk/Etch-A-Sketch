@@ -48,4 +48,26 @@ function clearCanvas(){
     });
 }
 
+function toggleGridBorder(state){
+    const cells = document.querySelectorAll('.grid__cell');
+    cells.forEach(cell => {
+        if(state){
+            cell.style.border = '1px solid #eee';
+        } else {
+            cell.style.border = 'none';
+        }
+    });
+}
+
+const gridToggle = document.getElementById('grid-check');
+const gridLabel = document.getElementById('grid-label');
+gridToggle.addEventListener('change', ()=>{
+    gridLabel.classList.toggle('btn--pushed');
+    if(gridLabel.classList.contains('btn--pushed')){
+        toggleGridBorder(true);
+    } else {
+        toggleGridBorder(false);
+    }
+})
+
 
