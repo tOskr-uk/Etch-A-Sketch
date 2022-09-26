@@ -1,16 +1,13 @@
 'use strict';
 
 const grid = document.querySelector('.grid');
-const colorPicker = document.querySelector('.color-picker input');
+const gridToggle = document.getElementById('grid-check');
+const gridLabel = document.getElementById('grid-label');
+const colorPicker = document.querySelector('.color-picker');
+
 let PenColor = '#000';
 
 createGrid(16);
-
-
-colorPicker.addEventListener('change', ()=>{
-    PenColor = colorPicker.value;
-    colorPicker.nextElementSibling.style.backgroundColor = PenColor;
-})
 
 grid.addEventListener('mousedown',e=>{
     paintCell(e.target);
@@ -28,6 +25,7 @@ function paintCell(cell){
     }
 }
 
+// crates the grid in the DOM.
 function createGrid(size){
     const gridWidth = grid.offsetWidth;
     const cellSize = gridWidth/size;
@@ -41,12 +39,23 @@ function createGrid(size){
     }
 }
 
+// clears the grid.
 function clearCanvas(){
     const cells = document.querySelectorAll('.grid__cell');
     cells.forEach(cell => {
         cell.style.backgroundColor = 'white';
     });
 }
+
+// toggles the grid border on/off
+gridToggle.addEventListener('change', ()=>{
+    gridLabel.classList.toggle('btn--pushed');
+    if(gridLabel.classList.contains('btn--pushed')){
+        toggleGridBorder(true);
+    } else {
+        toggleGridBorder(false);
+    }
+})
 
 function toggleGridBorder(state){
     const cells = document.querySelectorAll('.grid__cell');
@@ -59,15 +68,12 @@ function toggleGridBorder(state){
     });
 }
 
-const gridToggle = document.getElementById('grid-check');
-const gridLabel = document.getElementById('grid-label');
-gridToggle.addEventListener('change', ()=>{
-    gridLabel.classList.toggle('btn--pushed');
-    if(gridLabel.classList.contains('btn--pushed')){
-        toggleGridBorder(true);
-    } else {
-        toggleGridBorder(false);
-    }
-})
+const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 'darkcyan', 'darkgreen', 'orchid', 'olivedrab', 'palegreen', 'red', 'royalblue', 'yellow', 'wheat', 'yellowgreen']
+function populateColorPicker(){
+    const cells = document.querySelectorAll('.color-picker div');
+    for(let i=0;i<cells.length;i++){
+        cells[i].style.backgroundColor = colorArr[i];
+    };
+}
 
-
+populateColorPicker();
