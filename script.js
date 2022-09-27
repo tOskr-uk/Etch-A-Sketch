@@ -52,9 +52,11 @@ colorPicker.addEventListener('click', e=>{
 
 
 grid.addEventListener('mousedown',e=>{
+    e.preventDefault();
     paintCell(e.target);
     if(e.buttons === 1){
         grid.addEventListener('mouseover',e=>{
+            e.preventDefault()
             e.buttons == 1 ? paintCell(e.target) : false;
         })
     }
@@ -67,7 +69,7 @@ function paintCell(cell){
     }
 }
 
-// crates the grid in the DOM.
+// creates the grid in the DOM.
 function createGrid(size){
     const gridWidth = grid.offsetWidth;
     const cellSize = gridWidth/size;
