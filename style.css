@@ -56,6 +56,15 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
+.tools__group{
+    position: relative;
+}
+
+.tools__group span{
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+}
 
 .active-color{
     height: 4rem;

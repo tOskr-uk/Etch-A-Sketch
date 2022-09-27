@@ -4,8 +4,6 @@ const grid = document.querySelector('.grid');
 const gridToggle = document.getElementById('grid-check');
 const gridLabel = document.getElementById('grid-label');
 const colorPicker = document.querySelector('.color-picker');
-// const cells = document.querySelectorAll('.color-picker div');
-
 
 let penColor = '#000000';
 const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 'darkcyan', 'darkgreen', 'orchid', 'olivedrab', 'palegreen', 'red', 'royalblue', 'yellow', 'wheat', 'yellowgreen']
@@ -13,6 +11,24 @@ const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 
 createGrid(16);
 createColorPicker();
 setPenColor(0);
+
+// trigger for changing grid size.
+const gridSize = document.getElementById('grid-size');
+gridSize.addEventListener('change', ()=>{
+    let val = gridSize.value;
+    const maxGrid = 64;
+    if(val > maxGrid) val = maxGrid;
+    // if(!val <= maxGrid) val=maxGrid;
+    deleteGridElements();
+    createGrid(parseInt(val));
+    if(gridToggle){
+        toggleGridBorder(true);
+    }
+    // update grid label
+    const span = document.querySelector('.tools__group span');
+    span.innerText = `${val} x ${val}`;
+})
+
 
 
 // -------------
@@ -43,7 +59,6 @@ function setPenColor(id){
     } else {
         ac.style.color = 'black';
     }
-
 }
 
 colorPicker.addEventListener('click', e=>{
@@ -118,3 +133,11 @@ function toggleGridBorder(state){
         }
     });
 }
+
+// deletes al the grid cells
+function deleteGridElements(){
+    while(grid.lastElementChild){
+        grid.removeChild(grid.lastChild);
+    }
+}
+
