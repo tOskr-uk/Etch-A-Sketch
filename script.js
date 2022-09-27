@@ -6,6 +6,7 @@ const gridLabel = document.getElementById('grid-label');
 const colorPicker = document.querySelector('.color-picker');
 
 let penColor = '#000000';
+let gridStatus = false;
 const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 'darkcyan', 'darkgreen', 'orchid', 'olivedrab', 'palegreen', 'red', 'royalblue', 'yellow', 'wheat', 'yellowgreen']
 
 createGrid(16);
@@ -18,12 +19,14 @@ gridSize.addEventListener('change', ()=>{
     let val = gridSize.value;
     const maxGrid = 64;
     if(val > maxGrid) val = maxGrid;
-    // if(!val <= maxGrid) val=maxGrid;
+
     deleteGridElements();
     createGrid(parseInt(val));
-    if(gridToggle){
+
+    if(gridStatus){
         toggleGridBorder(true);
     }
+
     // update grid label
     const span = document.querySelector('.tools__group span');
     span.innerText = `${val} x ${val}`;
@@ -128,8 +131,10 @@ function toggleGridBorder(state){
     cells.forEach(cell => {
         if(state){
             cell.style.border = '1px solid #eee';
+            gridStatus = true;
         } else {
             cell.style.border = 'none';
+            gridStatus = false;
         }
     });
 }
@@ -140,4 +145,3 @@ function deleteGridElements(){
         grid.removeChild(grid.lastChild);
     }
 }
-
