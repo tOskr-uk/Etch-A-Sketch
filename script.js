@@ -12,8 +12,12 @@ const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 
 
 createGrid(16);
 createColorPicker();
-changePenColor(0);
+setPenColor(0);
 
+
+// -------------
+// COLOR PICKER
+// -------------
 // creates and assigns colors to the colorpicker grid
 function createColorPicker(){
     for(let i=0;i<colorArr.length;i++){
@@ -24,7 +28,7 @@ function createColorPicker(){
     }
 }
 
-function changePenColor(id){
+function setPenColor(id){
     const ac = document.querySelector('.active-color');
     const color = colorArr[id];
     ac.innerText = color;
@@ -44,13 +48,15 @@ function changePenColor(id){
 
 colorPicker.addEventListener('click', e=>{
     const id = e.target.id.slice(4);
-    changePenColor(id);
+    setPenColor(id);
 })
 
 
 
 
-
+// ---------------
+// GRID FUNCTIONS
+// ---------------
 grid.addEventListener('mousedown',e=>{
     e.preventDefault();
     paintCell(e.target);
@@ -62,7 +68,7 @@ grid.addEventListener('mousedown',e=>{
     }
 })
 
-
+// paints the cell
 function paintCell(cell){
     if(cell.classList.contains('grid__cell')){
         cell.style.backgroundColor = penColor;
@@ -91,7 +97,7 @@ function clearCanvas(){
     });
 }
 
-// toggles the grid border on/off
+// triggers for border toggle
 gridToggle.addEventListener('change', ()=>{
     gridLabel.classList.toggle('btn--pushed');
     if(gridLabel.classList.contains('btn--pushed')){
@@ -101,6 +107,7 @@ gridToggle.addEventListener('change', ()=>{
     }
 })
 
+// toggles the grid border on/off
 function toggleGridBorder(state){
     const cells = document.querySelectorAll('.grid__cell');
     cells.forEach(cell => {
@@ -111,8 +118,3 @@ function toggleGridBorder(state){
         }
     });
 }
-
-
-
-
-
