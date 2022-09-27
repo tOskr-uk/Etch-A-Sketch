@@ -4,10 +4,52 @@ const grid = document.querySelector('.grid');
 const gridToggle = document.getElementById('grid-check');
 const gridLabel = document.getElementById('grid-label');
 const colorPicker = document.querySelector('.color-picker');
+// const cells = document.querySelectorAll('.color-picker div');
 
-let PenColor = '#000';
+
+let penColor = '#000000';
+const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 'darkcyan', 'darkgreen', 'orchid', 'olivedrab', 'palegreen', 'red', 'royalblue', 'yellow', 'wheat', 'yellowgreen']
 
 createGrid(16);
+createColorPicker();
+changePenColor(0);
+
+// creates and assigns colors to the colorpicker grid
+function createColorPicker(){
+    for(let i=0;i<colorArr.length;i++){
+        const div = document.createElement('div');
+        div.setAttribute('id', `cpe-${i}`);
+        div.style.backgroundColor = colorArr[i];
+        colorPicker.appendChild(div);
+    }
+}
+
+function changePenColor(id){
+    const ac = document.querySelector('.active-color');
+    const color = colorArr[id];
+    ac.innerText = color;
+    ac.style.backgroundColor = color;
+    penColor = color;
+
+    // changes text color where color is too dark to see it.
+    // Can be done programaticaly using hsl values. Added to todo list.
+    const darkArr = [0,1,2,3,6,7,9,12];
+    if(darkArr.includes(parseInt(id))){
+        ac.style.color = 'white';
+    } else {
+        ac.style.color = 'black';
+    }
+
+}
+
+colorPicker.addEventListener('click', e=>{
+    const id = e.target.id.slice(4);
+    changePenColor(id);
+})
+
+
+
+
 
 grid.addEventListener('mousedown',e=>{
     paintCell(e.target);
@@ -21,7 +63,7 @@ grid.addEventListener('mousedown',e=>{
 
 function paintCell(cell){
     if(cell.classList.contains('grid__cell')){
-        cell.style.backgroundColor = 'red';
+        cell.style.backgroundColor = penColor;
     }
 }
 
@@ -68,12 +110,7 @@ function toggleGridBorder(state){
     });
 }
 
-const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 'darkcyan', 'darkgreen', 'orchid', 'olivedrab', 'palegreen', 'red', 'royalblue', 'yellow', 'wheat', 'yellowgreen']
-function populateColorPicker(){
-    const cells = document.querySelectorAll('.color-picker div');
-    for(let i=0;i<cells.length;i++){
-        cells[i].style.backgroundColor = colorArr[i];
-    };
-}
 
-populateColorPicker();
+
+
+
