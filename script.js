@@ -17,7 +17,7 @@ setPenColor(0);
 const gridSize = document.getElementById('grid-size');
 gridSize.addEventListener('change', ()=>{
     let val = gridSize.value;
-    const maxGrid = 64;
+    const maxGrid = 100;
     if(val > maxGrid) val = maxGrid;
 
     deleteGridElements();
