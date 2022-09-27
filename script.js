@@ -2,16 +2,32 @@
 
 const grid = document.querySelector('.grid');
 const gridToggle = document.getElementById('grid-check');
+const randomColorToggle = document.getElementById('color-randomize');
 const gridLabel = document.getElementById('grid-label');
+const randomColorLabel = document.getElementById('color-randomize-label');
 const colorPicker = document.querySelector('.color-picker');
 
 let penColor = '#000000';
 let gridStatus = false;
+let randomColorStatus = false;
+
 const colorArr = ['black', 'blueviolet', 'blue', 'brown', 'cadetblue', 'coral', 'darkcyan', 'darkgreen', 'orchid', 'olivedrab', 'palegreen', 'red', 'royalblue', 'yellow', 'wheat', 'yellowgreen']
 
-createGrid(16);
+createGrid(40);
 createColorPicker();
 setPenColor(0);
+
+
+// triggers for random color toggle
+randomColorToggle.addEventListener('change', ()=>{
+    randomColorLabel.classList.toggle('btn--pushed');
+    if(randomColorLabel.classList.contains('btn--pushed')){
+        randomColorStatus = true;
+    } else {
+        randomColorStatus = false;
+    }
+})
+
 
 // trigger for changing grid size.
 const gridSize = document.getElementById('grid-size');
@@ -37,16 +53,13 @@ gridSize.addEventListener('change', ()=>{
 // -------------
 // COLOR PICKER
 // -------------
-// creates and assigns colors to the colorpicker grid
-function createColorPicker(){
-    for(let i=0;i<colorArr.length;i++){
-        const div = document.createElement('div');
-        div.setAttribute('id', `cpe-${i}`);
-        div.style.backgroundColor = colorArr[i];
-        colorPicker.appendChild(div);
-    }
-}
+// trigger for color selection
+colorPicker.addEventListener('click', e=>{
+    const id = e.target.id.slice(4);
+    setPenColor(id);
+})
 
+// formats the active color element and sets the global penColor variable
 function setPenColor(id){
     const ac = document.querySelector('.active-color');
     const color = colorArr[id];
@@ -64,10 +77,15 @@ function setPenColor(id){
     }
 }
 
-colorPicker.addEventListener('click', e=>{
-    const id = e.target.id.slice(4);
-    setPenColor(id);
-})
+// creates and assigns colors to the colorpicker grid
+function createColorPicker(){
+    for(let i=0;i<colorArr.length;i++){
+        const div = document.createElement('div');
+        div.setAttribute('id', `cpe-${i}`);
+        div.style.backgroundColor = colorArr[i];
+        colorPicker.appendChild(div);
+    }
+}
 
 
 
@@ -80,7 +98,7 @@ grid.addEventListener('mousedown',e=>{
     paintCell(e.target);
     if(e.buttons === 1){
         grid.addEventListener('mouseover',e=>{
-            e.preventDefault()
+            e.preventDefault();
             e.buttons == 1 ? paintCell(e.target) : false;
         })
     }
@@ -89,6 +107,9 @@ grid.addEventListener('mousedown',e=>{
 // paints the cell
 function paintCell(cell){
     if(cell.classList.contains('grid__cell')){
+        if(randomColorStatus){
+            setPenColor(Math.floor(Math.random()*colorArr.length));
+        }
         cell.style.backgroundColor = penColor;
     }
 }

@@ -9,19 +9,22 @@
 </head>
 <body>
     <section class="scetch">
+        <h1>Etch-A-Sketch 3000</h1>
         <div class="tools">
             <div class="tools__group">
                 <div class="active-color"></div>
                 <div class="color-picker"></div>
-                <input id="grid-size" type="range" min="10" max="100" value="20">
-                <span>20 x 20</span>
+                <input id="color-randomize" type="checkbox">
+                <label id="color-randomize-label" class="btn" for="color-randomize">Color Randomize</label>
+                <input id="grid-size" type="range" min="10" max="100" value="40">
+                <span>40 x 40</span>
             </div>
             <div class="tools__group">
                 <button class="btn" onclick="clearCanvas()">Clear Canvas</button>
                 <input id="grid-check" type="checkbox">
                 <label id="grid-label" class="btn" for="grid-check">Toggle Grid</label>
             </div>
-        </div>  
+        </div>
 
         <div class="grid"></div>
     </section>

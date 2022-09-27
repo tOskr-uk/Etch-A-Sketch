@@ -21,10 +21,20 @@ body{
 
 /* SCETCH */
 .scetch{
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
-    margin: 5rem 5rem 0 5rem;
+    margin: 8rem 5rem 0 5rem;
     gap: 3rem;
+}
+
+.scetch h1{
+    position: absolute;
+    right: 0;
+    top: -4rem;
+
+    color: #999;
+    letter-spacing: 3px;
 }
 
 
@@ -55,6 +65,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: 1.4rem;
+    user-select: none;
 }
 .tools__group{
     position: relative;
@@ -66,6 +78,17 @@ body{
     right: 0;
     font-size: 1.2rem;
 }
+
+.tools input[type=checkbox]{
+    display: none;
+}
+
+.tools label{
+    display: block;
+    font-size: inherit;
+}
+
+
 
 .active-color{
     height: 4rem;
@@ -92,6 +115,8 @@ body{
     transform: scale(1.2);
     box-shadow: 0 0 10px 2px rgba(0,0,0,0.4);
 }
+
+
 
 
 /* RANGE INPUT */
@@ -195,17 +220,7 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
     background: #FFFFFF;
-}
-
-/* TOGGLE GRID */
-#grid-check{
-    display: none;
-}
-
-#grid-label{
-    display: block;
-}
-  
+}  
 
 /* COMPONENTS */
 .btn{
@@ -214,7 +229,7 @@ input[type=range]:focus::-ms-fill-upper {
     background-color: white;
     border: 1px solid #444;
     font-family: inherit;
-    font-size: 1.6rem;
+    font-size: inherit;
     letter-spacing: .2rem;
     box-shadow: 0 2px 8px -2px rgba(0,0,0,0.5);
     margin-top: 2rem;
@@ -224,7 +239,6 @@ input[type=range]:focus::-ms-fill-upper {
 
 .btn:active{
     box-shadow: 0 0 8px -2px rgba(0,0,0,0.5);
-    /* transform: translateY(2px); */
 }
 
 .btn--pushed{
