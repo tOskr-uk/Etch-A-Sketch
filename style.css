@@ -52,6 +52,9 @@ body{
 .tools{
     width: 125px;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .active-color{

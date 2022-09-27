@@ -10,10 +10,12 @@
 <body>
     <section class="scetch">
         <div class="tools">
-            <div class="active-color"></div>
-            <div class="color-picker"></div>
-            <div class="switch">
+            <div class="tools__group">
+                <div class="active-color"></div>
+                <div class="color-picker"></div>
                 <input id="size" type="range" min="8" max="64" value="16">
+            </div>
+            <div class="tools__group">
                 <button class="btn" onclick="clearCanvas()">Clear Canvas</button>
                 <input id="grid-check" type="checkbox">
                 <label id="grid-label" class="btn" for="grid-check">Toggle Grid</label>
